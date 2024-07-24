@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="content">
+        <marquee behavior="alternate" direction="right"><h3>This was sold on <%= shops.createdAt.toDateString() %></h3></marquee>
+       <h2> Name of Product : <%= shops.name %></h2>
+       <h2> Price : #<%= shops.price %> </h2>
+        <h2>Quantity  : <%= shops.quantity%></h2>
+        <h2>Description  :<%= shops.description %></h2>
+    </div>
+    <div class="delete-cont">
+        <button class="btn" data-id="<%= shops._id %>">DELETE</button>
+    </div>
+     <script>
+        const deleteBtn = document.querySelector(".delete-cont button");
+        deleteBtn.addEventListener("click", () => {
+            const id = deleteBtn.dataset.id;
+            const deleteshopModel = async () =>{
+                const shops = await fetch (`/shop/${id}`, {
+                    method: "DELETE"
+                });
+                await console.log(shops);
+                const data = await shops.json();
+    
+                if (data) {
+                    window.location.href = data.redirect;
+                }
+            };
+            deleteshopModel();
+        });
+     </script>
+</div>

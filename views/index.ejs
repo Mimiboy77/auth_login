@@ -1,0 +1,24 @@
+<div class="author">
+    <h1 class="author__heading">Hi, Welcome to B.M Shop web</h1>
+    <p class="author__body">We Deliver the best and Sell at cheaper price.</p>
+  </div>
+  <img src="/img/about.jpg" alt="person looking out through window" class="hero-image" width="981" height="528">
+  <section class="articles">
+    <h2 class="articles__heading">Latest Seles</h2>
+    <% if (shop.length > 0) { %>
+     <% shop.forEach(shops => { %>
+      <ul class="article-ul">
+        <li>
+          <a href="/shop/<%= shops._id  %>">
+                <div class="content">
+                   <p> Name : <%= shops.name %></p>
+                    <p>Price : #<%= shops.price %></p> </div>
+            <span class="article-list__date"><%= shops.createdAt.toDateString() %></span>
+          </a>
+        </li>
+    </ul>
+     <% }) %>
+    <% } %>
+   
+      <a href="nextPage" class="pagination">&lt; View Older Seles</a>
+  </section>
